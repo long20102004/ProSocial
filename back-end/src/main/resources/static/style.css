@@ -49,12 +49,15 @@ body{
     display: inline-flex;
     width: 100%;
 }
-.my-list-message{
-    width: 70%;
-}
-.my-message{
-    width: 100%;
-}
 li{
     list-style-type: none;
+}
+.list-message{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.other-message{
+    align-self: flex-start;
 }

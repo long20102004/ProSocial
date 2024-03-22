@@ -1,5 +1,5 @@
 <html>
-  <head>
+  <head xmlns:th="https://www.thymeleaf.org/">
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -24,11 +24,13 @@
         <div class="user-detail"></div>
 
         <div class="message-data">
-          <div class="my-message">
-            <ul class="my-list-message"></ul>
+
+          <div class="messages-show">
+            <ul class="list-message">
+
+            </ul>
           </div>
 
-          <div class="other-message"></div>
 
           <div class="send-message">
             <form class="form-holder">
@@ -56,22 +58,25 @@
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input
-            type="text"
-            class="form-control input-name"
-            id="exampleInputPassword1"
-            placeholder="Name"
+                  type="text"
+                  class="form-control input-name"
+                  id="exampleInputPassword1"
+                  placeholder="Name"
           />
         </div>
 
         <button
-          type="submit"
-          class="btn btn-primary sign-in-button"
-          style="margin-top: 5%"
+                type="submit"
+                class="btn btn-primary sign-in-button"
+                style="margin-top: 5%"
         >
           Submit
         </button>
       </form>
     </div>
+
+
+
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
