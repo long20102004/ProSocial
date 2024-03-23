@@ -10,29 +10,37 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
 @Table(name = "user")
 public class User implements UserDetails {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
     @Column(name = "roles")
-    private String roles;
+    private String roles = "ROLE_USER";
 
-    @OneToMany
-    private List<Friend> friends;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private List<Friend> friends = new ArrayList<>();
 
+    public User(String username, String password, String roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(this.getRoles()));
@@ -40,12 +48,12 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
@@ -66,5 +74,8 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+    public void addFriend(Friend newFriend){
+        friends.add(newFriend);
     }
 }

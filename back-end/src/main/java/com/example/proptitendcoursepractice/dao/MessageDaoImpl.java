@@ -4,8 +4,9 @@ import com.example.proptitendcoursepractice.model.Message;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class MessageDaoImpl implements MessageDao{
     public EntityManager entityManager;
     public MessageDaoImpl(EntityManager entityManager){

@@ -10,13 +10,13 @@ public class SecurityDetail {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-//        httpSecurity.formLogin(form -> {
-//            form.loginPage("/login").permitAll();
-//        });
-        httpSecurity.authorizeHttpRequests(request -> {
-            request.anyRequest().permitAll();
+        httpSecurity.formLogin(form -> {
+            form.loginPage("/login").permitAll();
         });
-        httpSecurity.csrf(csrf -> {csrf.disable();});
+        httpSecurity.authorizeHttpRequests(request -> {
+            request.requestMatchers("/messages").hasRole("USER")
+                    .anyRequest().permitAll();
+        });
         return httpSecurity.build();
     }
 }
