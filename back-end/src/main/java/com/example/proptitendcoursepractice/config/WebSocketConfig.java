@@ -16,9 +16,4 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/stomp").setAllowedOrigins("*");
     }
 
-    @Override
-    public void configureMessageBroker(MessageBrokerRegistry registry) {
-//        registry.enableSimpleBroker("topic");
-//        registry.setApplicationDestinationPrefixes("app");
-    }
 }

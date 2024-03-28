@@ -47,3 +47,7 @@ p{
     height: 70%;
     width: 100%;
 }
+.user-avatar{
+    border-radius: 100%;
+    width: 20%;
+}

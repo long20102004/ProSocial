@@ -25,18 +25,23 @@ public class User implements UserDetails {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "name")
+    private String name;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
     @Column(name = "roles")
     private String roles = "ROLE_USER";
+    @Column(name = "avatar")
+    private String avatar = "/avatar/default-avatar.jpg";
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     private List<Friend> friends = new ArrayList<>();
 
-    public User(String username, String password, String roles) {
+    public User(String name, String username, String password, String roles) {
+        this.name = name;
         this.username = username;
         this.password = password;
         this.roles = roles;

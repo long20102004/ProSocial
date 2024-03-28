@@ -1,5 +1,5 @@
 <html lang="en">
-  <head xmlns:th="https://www.thymeleaf.org/">
+  <head xmlns:th="http://www.thymeleaf.org/">
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body th:data-user="${user.username}">
+  <body th:data-user="${user.name}">
     <div class="container">
       <div class="user-list">
         <div th:each="friend : ${friendList}">
@@ -67,6 +67,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="/main.js"></script>
+    <script src="/message-to-all.js"></script>
   </body>
 </html>

@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserDto {
+    private String name;
     private String username;
     private String password;
     private String roles = "ROLE_USER";

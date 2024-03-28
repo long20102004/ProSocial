@@ -11,4 +11,6 @@ public interface UserService {
     public void registerNewUser(UserDto userDto);
     public String getCurrentUsername();
     public User getCurrentUser();
+    public List<User> getAllUser(String currentUsername);
+    public User findUserById(int id);
 }

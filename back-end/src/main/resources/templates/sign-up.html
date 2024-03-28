@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,9 +13,17 @@
 <body>
 <form th:object="${newUser}" th:action="@{/register-new-user}" method="POST">
     <div class="form-group">
+        <label for="exampleInputPassword2">Password</label>
+        <input type="password" class="form-control"
+               id="exampleInputPassword2"
+               placeholder="Password"
+               th:field="${newUser.name}"
+        >
+    </div>
+    <div class="form-group">
         <label for="exampleInputEmail1">User Name</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-               placeholder="Enter your user name or email"
+               placeholder="Enter your user name - email"
                th:field="${newUser.username}"
 
         >

@@ -36,14 +36,22 @@ public class UserDaoImpl implements UserDao {
         if (user != null) {
             throw new UserExistedException("user existed");
         } else {
-            User newUser = new User(userDto.getUsername(), userDto.getPassword(), userDto.getRoles());
+            User newUser = new User(userDto.getName(),userDto.getUsername(), userDto.getPassword(), userDto.getRoles());
             entityManager.persist(newUser);
         }
     }
 
     @Override
-    public List<User> getAllUser() {
-        TypedQuery<User>userTypedQuery = entityManager.createQuery("SELECT u FROM User u", User.class);
+    public List<User> getAllUser(String currentUsername) {
+        TypedQuery<User>userTypedQuery = entityManager.createQuery("SELECT u from User u where u.username != :username", User.class);
+        userTypedQuery.setParameter("username", currentUsername);
         return userTypedQuery.getResultList();
+    }
+
+    @Override
+    public User getUserById(int findingId) {
+        TypedQuery<User> userTypedQuery = entityManager.createQuery("SELECT u FROM User u where u.id = :id", User.class);
+        userTypedQuery.setParameter("id", findingId);
+        return userTypedQuery.getSingleResult();
     }
 }

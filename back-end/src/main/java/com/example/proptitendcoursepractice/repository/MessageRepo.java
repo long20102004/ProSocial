@@ -4,6 +4,8 @@ import com.example.proptitendcoursepractice.dao.MessageDao;
 import com.example.proptitendcoursepractice.model.Message;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class MessageRepo {
     MessageDao messageDao;
@@ -12,5 +14,8 @@ public class MessageRepo {
     }
     public void saveMessage(Message message){
         messageDao.saveMessage(message);
+    }
+    public List<Message> getMessagesByConnection(String connection){
+        return messageDao.getMessagesByConnection(connection);
     }
 }

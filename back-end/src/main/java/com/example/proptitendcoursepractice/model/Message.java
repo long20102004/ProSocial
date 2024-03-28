@@ -22,7 +22,9 @@ public class Message {
     @Column(name = "sender")
     private String sender;
     @Column(name = "type")
-    public String type;
+    private String type;
+    @Column(name = "connection")
+    public String connection;
 //    public enum TypeMessage {
 //        CHAT, JOIN, LEAVE;
 //    }

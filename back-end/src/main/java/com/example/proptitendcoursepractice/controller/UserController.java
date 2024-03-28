@@ -29,15 +29,7 @@ public class UserController {
         modelAndView.setViewName("login-page");
         return modelAndView;
     }
-    @GetMapping("/messages")
-    public ModelAndView chatting(){
-        ModelAndView modelAndView = new ModelAndView();
-        User currentUser = userService.getCurrentUser();
-        modelAndView.addObject("friendList",currentUser.getFriends());
-        modelAndView.addObject("user", userService.getCurrentUser() );
-        modelAndView.setViewName("chat");
-        return modelAndView;
-    }
+
     @GetMapping("/sign-up")
     public ModelAndView signUp(){
         ModelAndView modelAndView = new ModelAndView();
@@ -48,7 +40,15 @@ public class UserController {
     @PostMapping("/register-new-user")
     public ModelAndView registerNewUser(@ModelAttribute("newUser") UserDto user) {
         userService.registerNewUser(user);
-        ModelAndView modelAndView = new ModelAndView("redirect:/login");
+        return new ModelAndView("redirect:/login");
+    }
+    @GetMapping("")
+    public ModelAndView webMainPage(){
+        ModelAndView modelAndView = new ModelAndView();
+        String currentUsername = userService.getCurrentUsername();
+        modelAndView.addObject("userList", userService.getAllUser(currentUsername));
+        modelAndView.addObject("currentUser", userService.getCurrentUser());
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 }

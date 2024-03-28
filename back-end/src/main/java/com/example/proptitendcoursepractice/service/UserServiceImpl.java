@@ -39,4 +39,14 @@ public class UserServiceImpl implements UserService{
         return userRepo.findUserByUsername(getCurrentUsername());
     }
 
+    @Override
+    public List<User> getAllUser(String currentUsername) {
+        return userRepo.getAllUser(currentUsername);
+    }
+
+    @Override
+    public User findUserById(int id) {
+        return userRepo.getUserById(id);
+    }
+
 }

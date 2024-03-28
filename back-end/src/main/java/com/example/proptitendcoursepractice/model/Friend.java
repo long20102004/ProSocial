@@ -18,7 +18,7 @@ public class Friend {
     @Column(name = "name")
     private String name;
     @Column(name = "avatar")
-    private String avatar;
+    private String avatar = "/avatar/default-avatar.jpg";
 
     public Friend(String name, String avatar) {
         this.name = name;

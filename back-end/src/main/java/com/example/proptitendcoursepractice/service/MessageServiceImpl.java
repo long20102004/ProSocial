@@ -6,6 +6,9 @@ import com.example.proptitendcoursepractice.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Component
 public class MessageServiceImpl implements MessageService{
     public MessageRepo messageRepo;
@@ -17,5 +20,10 @@ public class MessageServiceImpl implements MessageService{
     @Override
     public void saveMessage(Message message) {
         messageRepo.saveMessage(message);
+    }
+
+    @Override
+    public List<Message> getMessagesByConnection(String connection) {
+        return messageRepo.getMessagesByConnection(connection);
     }
 }

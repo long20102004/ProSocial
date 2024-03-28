@@ -15,6 +15,7 @@ public class SecurityDetail {
         });
         httpSecurity.authorizeHttpRequests(request -> {
             request.requestMatchers("/messages").hasRole("USER")
+                    .requestMatchers("/").hasRole("USER")
                     .anyRequest().permitAll();
         });
         return httpSecurity.build();

@@ -9,5 +9,6 @@ import java.util.List;
 public interface UserDao {
     public User findUserByUsername(String username);
     public void saveNewUser(UserDto userDto);
-    public List<User>getAllUser();
+    public List<User>getAllUser(String currentUsername);
+    public User getUserById(int id);
 }

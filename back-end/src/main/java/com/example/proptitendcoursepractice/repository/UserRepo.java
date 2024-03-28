@@ -21,4 +21,10 @@ public class UserRepo {
     public void saveNewUser(UserDto userDto){
         userDao.saveNewUser(userDto);
     }
+    public List<User> getAllUser(String currentUsername){
+        return userDao.getAllUser(currentUsername);
+    }
+    public User getUserById(int id){
+        return userDao.getUserById(id);
+    }
 }
