@@ -42,6 +42,8 @@ public class MessageController {
             messagingTemplate.convertAndSend("/messages/" + id + '-' + receivedId, message);
         }
     }
+
+
     @MessageMapping("/send-messages/{senderId}-{receiverId}")
     public void sendMessage(@Payload Message message, @DestinationVariable("senderId") String id,
                             @DestinationVariable("receiverId") String receivedId) {
@@ -52,27 +54,24 @@ public class MessageController {
 
 
     @GetMapping("/messages/{senderId}-{receiverId}")
-    public String oneToOneMessage(@PathVariable("senderId") String id,
-                                  @PathVariable("receiverId") String receivedId, Model model) {
-        model.addAttribute("receivedUserId", receivedId);
-        model.addAttribute("currentUserId", id);
+    public String oneToOneMessage(Model model, @PathVariable int receiverId, @PathVariable int senderId) {
+        User currentUser = userService.getCurrentUser();
+        model.addAttribute("friends", userService.getAllUser(currentUser.getUsername()));
+        model.addAttribute("user", currentUser);
+        int friendId = receiverId;
+        if (receiverId == currentUser.getId()) friendId = senderId;
+        model.addAttribute("currentFriend", userService.findUserById(friendId));
         return "detail-chat";
     }
 
-    @MessageMapping("/send-message")
-    @SendTo("/messages")
-    public Message sendGroupMessage(@Payload Message message) {
-        messageService.saveMessage(message);
-        return message;
-    }
 
     @GetMapping("/messages")
     public ModelAndView chatting() {
         ModelAndView modelAndView = new ModelAndView();
         User currentUser = userService.getCurrentUser();
-        modelAndView.addObject("friendList", currentUser.getFriends());
-        modelAndView.addObject("user", userService.getCurrentUser());
-        modelAndView.setViewName("chat");
+        modelAndView.addObject("friends", userService.getAllUser(currentUser.getUsername()));
+        modelAndView.addObject("user", currentUser);
+        modelAndView.setViewName("chat-default-screen");
         return modelAndView;
     }
 }

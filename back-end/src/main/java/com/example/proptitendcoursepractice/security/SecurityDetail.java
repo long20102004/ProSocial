@@ -14,7 +14,7 @@ public class SecurityDetail {
             form.loginPage("/login").permitAll();
         });
         httpSecurity.authorizeHttpRequests(request -> {
-            request.requestMatchers("/messages").hasRole("USER")
+            request.requestMatchers("/messages/**").hasRole("USER")
                     .requestMatchers("/").hasRole("USER")
                     .anyRequest().permitAll();
         });

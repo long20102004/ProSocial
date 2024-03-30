@@ -24,7 +24,9 @@ public class Message {
     @Column(name = "type")
     private String type;
     @Column(name = "connection")
-    public String connection;
+    private String connection;
+    @Column(name = "timestamp")
+    private String timeStamp;
 //    public enum TypeMessage {
 //        CHAT, JOIN, LEAVE;
 //    }

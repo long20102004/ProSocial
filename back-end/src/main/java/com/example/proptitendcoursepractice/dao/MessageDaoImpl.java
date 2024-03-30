@@ -26,7 +26,7 @@ public class MessageDaoImpl implements MessageDao{
 
     @Override
     public List<Message> getMessagesByConnection(String connection) {
-        TypedQuery<Message> messageTypedQuery = entityManager.createQuery("SELECT u FROM Message u where u.connection = :connection and u.type = 'CHAT'", Message.class);
+        TypedQuery<Message> messageTypedQuery = entityManager.createQuery("SELECT u FROM Message u where u.connection = :connection and u.type = 'CHAT' order by u.id asc ", Message.class);
         messageTypedQuery.setParameter("connection", connection);
         return messageTypedQuery.getResultList();
     }

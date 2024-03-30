@@ -40,6 +40,9 @@ public class User implements UserDetails {
     @JoinColumn(name = "id")
     private List<Friend> friends = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_post")
+    private List<Post> postList = new ArrayList<>();
     public User(String name, String username, String password, String roles) {
         this.name = name;
         this.username = username;
