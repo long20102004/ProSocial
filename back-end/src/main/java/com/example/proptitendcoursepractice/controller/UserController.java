@@ -42,13 +42,5 @@ public class UserController {
         userService.registerNewUser(user);
         return new ModelAndView("redirect:/login");
     }
-    @GetMapping("")
-    public ModelAndView webMainPage(){
-        ModelAndView modelAndView = new ModelAndView();
-        String currentUsername = userService.getCurrentUsername();
-        modelAndView.addObject("userList", userService.getAllUser(currentUsername));
-        modelAndView.addObject("currentUser", userService.getCurrentUser());
-        modelAndView.setViewName("index");
-        return modelAndView;
-    }
+
 }

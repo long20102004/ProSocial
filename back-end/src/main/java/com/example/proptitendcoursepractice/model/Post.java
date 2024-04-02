@@ -17,10 +17,16 @@ public class Post {
     private int id;
     @Column(name = "content")
     private String content;
-    @Column(name = "owner")
-    private String owner;
-    @Column(name = "timeStamp")
+    @ManyToOne
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    private User owner;
+    @Column(name = "time-stamp")
     private String timeStamp;
     @Column(name = "attached_resources")
     private String attachedResources;
+
+    public Post(String content, String timeStamp) {
+        this.content = content;
+        this.timeStamp = timeStamp;
+    }
 }

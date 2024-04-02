@@ -35,12 +35,10 @@ public class MessageController {
 
     @MessageMapping("/init-messages/{senderId}-{receiverId}")
     public void initMessage(@DestinationVariable("senderId") String id,
-                            @DestinationVariable("receiverId") String receivedId){
+                            @DestinationVariable("receiverId") String receivedId) {
         String connection = id + "-" + receivedId;
         List<Message> messages = messageService.getMessagesByConnection(connection);
-        for (Message message : messages){
-            messagingTemplate.convertAndSend("/messages/" + id + '-' + receivedId, message);
-        }
+        messagingTemplate.convertAndSend("/init-chat", messages);
     }
 
 

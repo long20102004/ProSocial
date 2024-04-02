@@ -52,6 +52,7 @@ p{
     border-radius: 5px;
 }
 .post-title{
+    width: 100%;
     display: inline-flex;
 }
 .story-container{
@@ -65,6 +66,7 @@ p{
 .post-container{
     height: 70%;
     width: 100%;
+    /* display: inline-flex; */
 }
 .user-avatar{
     border-radius: 100%;
@@ -92,12 +94,13 @@ p{
 .upload-post{
     display: inline-flex;
     width: 100%;
+    box-shadow: 0 0 4px rgba(0,0, 0, 2);
 }
 .input-post{
     margin: 20px 20px;
     border-radius: 10px;
     border: 0px;
-    box-shadow: 0 0 10px rgba(255,255, 255, 2);
+    box-shadow: 2px rgba(255,255, 255, 1);
     width: 100%;
     height: 30px;
 }
@@ -107,4 +110,15 @@ p{
 .message-button{
     border: 0;
     background-color: whitesmoke;
+}
+.modify-button{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+}
+.modify-icon{
+    /* margin-left: 5%; */
+    margin-right: 5%;
 }

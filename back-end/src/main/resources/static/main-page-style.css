@@ -53,6 +53,7 @@ p{
 }
 .post-title{
     display: inline-flex;
+    width: 100%;
 }
 .story-container{
     width: 100%;
@@ -92,6 +93,9 @@ p{
 .upload-post{
     display: inline-flex;
     width: 100%;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 0 4px rgba(0,0, 0, 2);
 }
 .input-post{
     margin: 20px 20px;
@@ -107,4 +111,19 @@ p{
 .message-button{
     border: 0;
     background-color: whitesmoke;
+}
+.send-button{
+    height: 60%;
+    align-items: center;
+}
+.modify-buttons{
+    width: 100%;
+    display: inline-flex;
+    /* flex-direction: column-reverse; */
+    justify-content: flex-end;
+    align-items: center;
+}
+.modify-icon{
+    margin-right: 5%;
+    height: 50%;
 }
