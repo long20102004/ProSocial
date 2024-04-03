@@ -23,7 +23,8 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public List<Message> getMessagesByConnection(String connection) {
-        return messageRepo.getMessagesByConnection(connection);
+    public List<Message> getMessagesByReceiverId(int id, int currentId) {
+        return messageRepo.getMessagesByReceiverId(id, currentId);
     }
+
 }

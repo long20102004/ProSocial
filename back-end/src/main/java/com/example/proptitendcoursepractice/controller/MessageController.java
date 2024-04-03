@@ -33,32 +33,27 @@ public class MessageController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    @MessageMapping("/init-messages/{senderId}-{receiverId}")
-    public void initMessage(@DestinationVariable("senderId") String id,
-                            @DestinationVariable("receiverId") String receivedId) {
-        String connection = id + "-" + receivedId;
-        List<Message> messages = messageService.getMessagesByConnection(connection);
-        messagingTemplate.convertAndSend("/init-chat", messages);
+    @MessageMapping("/init-messages/{currentId}-{receiverId}")
+    public void initMessage(@DestinationVariable("receiverId") int receivedId, @DestinationVariable("currentId") int id) {
+        List<Message> messages = messageService.getMessagesByReceiverId(receivedId, id);
+        messagingTemplate.convertAndSend("/messages/" + id, messages);
     }
 
 
-    @MessageMapping("/send-messages/{senderId}-{receiverId}")
-    public void sendMessage(@Payload Message message, @DestinationVariable("senderId") String id,
-                            @DestinationVariable("receiverId") String receivedId) {
+    @MessageMapping("/send-messages")
+    public void sendMessage(@Payload Message message) {
         messageService.saveMessage(message);
-        messagingTemplate.convertAndSend("/messages/" + id + '-' + receivedId, message);
+        messagingTemplate.convertAndSend("/messages/"+ message.getReceiver(), message);
     }
 
 
 
-    @GetMapping("/messages/{senderId}-{receiverId}")
-    public String oneToOneMessage(Model model, @PathVariable int receiverId, @PathVariable int senderId) {
+    @GetMapping("/messages/{receiverId}")
+    public String oneToOneMessage(Model model, @PathVariable int receiverId) {
         User currentUser = userService.getCurrentUser();
         model.addAttribute("friends", userService.getAllUser(currentUser.getUsername()));
         model.addAttribute("user", currentUser);
-        int friendId = receiverId;
-        if (receiverId == currentUser.getId()) friendId = senderId;
-        model.addAttribute("currentFriend", userService.findUserById(friendId));
+        model.addAttribute("currentFriend", userService.findUserById(receiverId));
         return "detail-chat";
     }
 

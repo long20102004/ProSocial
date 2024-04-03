@@ -8,5 +8,5 @@ import java.util.List;
 public interface MessageDao {
     public void saveMessage(Message message);
     public void loadAllMessage();
-    public List<Message> getMessagesByConnection(String connection);
+    public List<Message> getMessagesByReceiverId(int id, int currentId);
 }

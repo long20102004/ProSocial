@@ -6,20 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let messageContent = document.querySelector(".input-message");
     let currentUsername = document.querySelector(".current-user-name").textContent;
     let messageNotExisted = [];
-    let previousMessage = [];
-    let isReading = false;
-
-
+    let receivedUserId = document.querySelector(".received-user-id").textContent;
+    let currentUserId = document.querySelector(".current-user-id").textContent;
+    let isInitMessage = false;
     stompClient.connect({}, function (qualifiedName, value) {
-        let receivedUserId = document.querySelector(".received-user-id").textContent;
-        let currentUserId = document.querySelector(".current-user-id").textContent;
-        if (parseInt(receivedUserId) > parseInt(currentUserId)) {
-            let temp = receivedUserId;
-            receivedUserId = currentUserId
-            currentUserId = temp;
-        }
 
-        stompClient.send("/init-messages/" + receivedUserId + "-" + currentUserId, {}, {});
+
+        stompClient.send("/init-messages/" + currentUserId + "-" + receivedUserId, {}, {});
 
         sendButton.addEventListener('click', function (event) {
             event.preventDefault();
@@ -32,31 +25,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let messageData = {
                 content: messageContent.value,
-                sender: currentUsername,
+                sender: parseInt(currentUserId),
+                receiver: parseInt(receivedUserId),
+                senderName: currentUsername,
                 type: "CHAT",
                 timeStamp: formattedTime,
-                connection: receivedUserId + "-" + currentUserId
             };
-
-            stompClient.send("/send-messages/" + receivedUserId + "-" + currentUserId, {}, JSON.stringify(messageData));
+            stompClient.send("/send-messages", {}, JSON.stringify(messageData));
             messageContent.value = '';
+            readMessage(messageData);
         });
-        stompClient.subscribe("/messages/" + receivedUserId + '-' + currentUserId, function (message) {
+        stompClient.subscribe("/messages/" + currentUserId, function (message) {
             let receivedMessage = JSON.parse(message.body);
-            readMessage(receivedMessage);
+            if (Array.isArray(receivedMessage)) {
+                isInitMessage = true;
+                receivedMessage.forEach(receivedMessage => {
+                    readMessage(receivedMessage);
+                })
+            } else readMessage(receivedMessage);
         });
-        stompClient.subscribe("/init-chat", function (message) {
-            let receivedMessage = JSON.parse(message.body);
-            receivedMessage.forEach(receivedMessage => {
-                readMessage(receivedMessage);
-            });
-        })
     })
 
     function readMessage(receivedMessage){
         let parentDiv = document.createElement("div");
         parentDiv.classList.add("pb-4");
-        if (receivedMessage.sender === currentUsername) parentDiv.classList.add("chat-message-right");
+        if (receivedMessage.sender === parseInt(currentUserId)) parentDiv.classList.add("chat-message-right");
         else parentDiv.classList.add("chat-message-left");
         let avatarDiv = document.createElement("div");
         let avatarImg = document.createElement("img");
@@ -74,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messageDiv.classList.add("flex-shrink-1", "bg-light", "rounded", "py-2", "px-3", "mr-3");
         let senderDiv = document.createElement("div");
         senderDiv.classList.add("font-weight-bold", "mb-1");
-        senderDiv.textContent = receivedMessage.sender;
+        senderDiv.textContent = receivedMessage.senderName;
         let messageContent = document.createElement("p");
         messageContent.textContent = receivedMessage.content;
         messageDiv.appendChild(senderDiv)
@@ -83,9 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         parentDiv.appendChild(avatarDiv);
         parentDiv.appendChild(messageDiv);
-        if (messageNotExisted[receivedMessage.id] === undefined) {
+
+        if (isInitMessage && messageNotExisted[receivedMessage.id] === undefined) {
             messageNotExisted[receivedMessage.id] = "defined";
             messages.appendChild(parentDiv);
-        }
+        } else messages.appendChild(parentDiv);
     }
 })

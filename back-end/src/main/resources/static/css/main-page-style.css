@@ -1,0 +1,129 @@
+.my-container{
+    display: inline-block;
+    width: 100%;
+    height: 100vh;
+    background-color: whitesmoke;
+    overflow: hidden;
+    margin: 0;
+}
+.main-container{
+    width: 100%;
+    height: 92%;
+    display: inline-flex;
+    background-color: whitesmoke;
+}
+.search-bar{
+    background-color: whitesmoke;
+}
+p{
+    text-align: center;
+    text-justify: inter-word;
+}
+.nav-bar{
+    width: 100%;
+    height: 8%;
+    /* background-color: white; */
+}
+.group-container{
+    width: 20%;
+    height: 100%;
+}
+.space1, .space2{
+    width: 10%;
+    height: 100%;
+}
+.story-post{
+    margin-top: 30px;
+    border-radius: 5px;
+    background: whitesmoke;
+    width: 40%;
+    height: 100%;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(255,255, 255, 2);
+    overflow: scroll;
+}
+.story-post::-webkit-scrollbar {
+    display: none;
+}
+.post{
+    width: 100%;
+    background-color: white;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+}
+.post-title{
+    display: inline-flex;
+    width: 100%;
+}
+.story-container{
+    width: 100%;
+    height: 30%;
+}
+.message-container{
+    width: 20%;
+    height: 100%;
+}
+.post-container{
+    height: 70%;
+    width: 100%;
+}
+.user-avatar{
+    border-radius: 100%;
+    width: 20%;
+}
+.avatar{
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 100%;
+}
+
+.user-name{
+    margin: 10px 20px;
+    font-weight: bold;
+}
+.content{
+    margin: 20px 20px;
+}
+.post-image{
+    width: 100%;
+    border-radius: 5px;
+}
+.upload-post{
+    display: inline-flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 0 4px rgba(0,0, 0, 2);
+}
+.input-post{
+    margin: 20px 20px;
+    border-radius: 10px;
+    border: 0px;
+    box-shadow: 0 0 10px rgba(255,255, 255, 2);
+    width: 100%;
+    height: 30px;
+}
+.message-icon{
+    width: 2rem;
+}
+.message-button{
+    border: 0;
+    background-color: whitesmoke;
+}
+.send-button{
+    height: 60%;
+    align-items: center;
+}
+.modify-buttons{
+    width: 100%;
+    display: inline-flex;
+    /* flex-direction: column-reverse; */
+    justify-content: flex-end;
+    align-items: center;
+}
+.modify-icon{
+    margin-right: 5%;
+    height: 50%;
+}

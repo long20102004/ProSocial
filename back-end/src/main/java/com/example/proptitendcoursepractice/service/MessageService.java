@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface MessageService {
     public void saveMessage(Message message);
-    public List<Message> getMessagesByConnection(String connection);
+    public List<Message> getMessagesByReceiverId(int id, int currentId);
 }

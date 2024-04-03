@@ -21,6 +21,7 @@ public class UserDaoImpl implements UserDao {
         this.entityManager = entityManager;
     }
     @Override
+    @Transactional
     public User findUserByUsername(String username) {
         TypedQuery<User> userTypedQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
         userTypedQuery.setParameter(1, username);
@@ -42,6 +43,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    @Transactional
     public List<User> getAllUser(String currentUsername) {
         TypedQuery<User>userTypedQuery = entityManager.createQuery("SELECT u from User u where u.username != :username", User.class);
         userTypedQuery.setParameter("username", currentUsername);
@@ -49,6 +51,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    @Transactional
     public User getUserById(int findingId) {
         TypedQuery<User> userTypedQuery = entityManager.createQuery("SELECT u FROM User u where u.id = :id", User.class);
         userTypedQuery.setParameter("id", findingId);

@@ -14,7 +14,7 @@
 <div class="container">
 <form th:object="${newUser}" th:action="@{/register-new-user}" method="POST">
     <div class="form-group">
-        <label for="exampleInputEmail1">Name</label>
+        <label>Name</label>
         <input class="form-control"
                placeholder="Enter your name"
                th:field="${newUser.name}"

@@ -15,7 +15,7 @@ public class MessageRepo {
     public void saveMessage(Message message){
         messageDao.saveMessage(message);
     }
-    public List<Message> getMessagesByConnection(String connection){
-        return messageDao.getMessagesByConnection(connection);
+    public List<Message> getMessagesByReceiverId(int id, int currentId) {
+        return messageDao.getMessagesByReceiverId(id, currentId);
     }
 }

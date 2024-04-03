@@ -20,11 +20,13 @@ public class Message {
     @Column(name = "content")
     private String content;
     @Column(name = "sender")
-    private String sender;
+    private int sender;
+    @Column(name = "receiver")
+    private int receiver;
+    @Column(name = "sender_name")
+    private String senderName;
     @Column(name = "type")
     private String type;
-    @Column(name = "connection")
-    private String connection;
     @Column(name = "timestamp")
     private String timeStamp;
 //    public enum TypeMessage {
