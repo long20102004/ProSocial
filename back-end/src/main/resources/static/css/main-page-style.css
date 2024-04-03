@@ -127,3 +127,21 @@ p{
     margin-right: 5%;
     height: 50%;
 }
+.reaction-bar{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
+}
+.reaction-bar > * {
+    text-align: center;
+    width: 40%;
+    height: 120%;
+}
+hr{
+    margin-top: 1%;
+    margin-bottom: 0;
+}
+.post-button{
+    background: none;
+    border: none;
+}

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let localSocket = new WebSocket("ws://localhost:5000/stomp")
-    let stompClient = Stomp.over(localSocket);
+    let socket = new WebSocket("ws://longhh-chatting.us-east-1.elasticbeanstalk.com/stomp")
+    let stompClient = Stomp.over(socket);
     let messages = document.querySelector(".chat-messages");
     let sendButton = document.querySelector(".send-message-button");
     let messageContent = document.querySelector(".input-message");
@@ -81,5 +82,11 @@ document.addEventListener("DOMContentLoaded", function () {
             messageNotExisted[receivedMessage.id] = "defined";
             messages.appendChild(parentDiv);
         } else messages.appendChild(parentDiv);
+    }
+})
+document.querySelector(".input-message").addEventListener('keypress', function (e){
+    if (e.key === 'Enter'){
+        e.preventDefault();
+        document.querySelector(".send-message-button").click();
     }
 })
