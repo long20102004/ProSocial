@@ -34,7 +34,7 @@
                 </form>
                 <form th:action="@{/messages}">
                     <button type="submit" class="message-button">
-                        <img src="/icon/chat.svg" alt="chat" class="message-icon" />
+                        <img src= "/icon/chat.svg" alt="chat" class="message-icon" />
                     </button>
                 </form>
                 <!--                <form-->
@@ -65,8 +65,10 @@
                 </button>
             </form>
 
-            <div th:each="post : ${postList}">
-                <div class="post">
+            <div th:each="post : ${postList}" class="post">
+                <div class="post-id" th:text="${post.id}" style="display: none" ></div>
+                <div class="current-user-id" th:text="${currentUser.id}" style="display: none"></div>
+
                     <div class="post-title">
                         <div>
                             <img
@@ -86,7 +88,7 @@
                                     style="width: 10%"
                             >
                                 <button type="submit" class="btn btn-success modify-icon">
-                                    <img src="/icon/pencil-square.svg">
+                                    <img src="/icon/pencil-square.svg" />
                                 </button>
                             </form>
 
@@ -98,72 +100,71 @@
                                         type="submit"
                                         class="btn btn-outline-danger modify-icon"
                                 >
-                                    <img src="/icon/trash3.svg">
+                                    <img src="/icon/trash3.svg" />
                                 </button>
                             </form>
                         </div>
                     </div>
                     <div class="content" th:text="${post.content}"></div>
                     <!--                    <img src="/picture/demo.jpg" class="post-image" alt=""/>-->
+
+                    <div class="all-reaction">
+                        <button class="emoji-button smaller-like-button">
+                            <img src="/icon/hand-thumbs-up.svg" alt="" />
+                        </button>
+                        <button class="emoji-button love-button">
+                            <img src="/icon/heart.svg" alt="" />
+                        </button>
+                        <button class="emoji-button haha-button">
+                            <img src="/icon/emoji-laughing.svg" alt="" />
+                        </button>
+                        <button class="emoji-button sad-button">
+                            <img src="/icon/emoji-tear.svg" alt="" />
+                        </button>
+                        <button class="emoji-button wow-button">
+                            <img src="/icon/emoji-surprise.svg" alt="" />
+                        </button>
+                        <button class="emoji-button angry-button">
+                            <img src="/icon/emoji-angry.svg" alt="" />
+                        </button>
+                    </div>
+                    <!-- <hr /> -->
+                    <div class="reaction-count">
+                        <div class="like-count">
+                            <img src="/icon/hand-thumbs-up.svg" alt="" />
+                            <span th:text="${post.reactionList.size()}"></span>
+                        </div>
+                        <div class="comment-count">
+                            <img src="/icon/chat-dots.svg" alt="" />
+                            100
+                        </div>
+                        <div class="share-count">
+                            <img src="/icon/share.svg" alt="" />
+                            100
+                        </div>
+                    </div>
                     <hr />
                     <div class="reaction-bar">
                         <div class="reaction">
-                            <button class="post-button">
-                                <img src="/icon/hand-thumbs-up.svg" /> Thích
+                            <button class="post-button like-button">
+                                <img src="/icon/hand-thumbs-up.svg" class="reaction-icon"/> Thích
                             </button>
                         </div>
 
                         <div class="comment">
-                            <button class="post-button">
+                            <button class="post-button comment-button">
                                 <img src="/icon/chat-dots.svg" alt="" /> Bình luận
                             </button>
                         </div>
-                        <button class="post-button">
-                            <div class="share"><img src="/icon/share.svg" alt="" /> Chia sẻ</div>
+                        <button class="post-button share-button">
+                            <div class="share">
+                                <img src="/icon/share.svg" alt="" /> Chia sẻ
+                            </div>
                         </button>
                     </div>
                     <hr />
-                </div>
             </div>
 
-            <div class="post">
-                <div class="post-title">
-                    <div>
-                        <img
-                                src="/avatar/default-avatar.jpg"
-                                alt="avatar"
-                                class="avatar"
-                        />
-                    </div>
-                    <div class="user-name">Long</div>
-                </div>
-                <div class="content">
-                    Hello everyone, welcome to my social page. Hope you enjoy it!
-                </div>
-
-                <img src="/picture/demo.jpg" class="post-image" alt="picture" />
-
-                <hr />
-                <div class="reaction-bar">
-                    <div class="reaction">
-                        <button class="post-button">
-                            <img src="/icon/hand-thumbs-up.svg" /> Thích
-                        </button>
-                    </div>
-
-                    <div class="comment">
-                        <button class="post-button">
-                            <img src="/icon/chat-dots.svg" alt="" /> Bình luận
-                        </button>
-                    </div>
-                    <button class="post-button">
-                        <div class="share"><img src="/icon/share.svg" alt="" /> Chia sẻ</div>
-                    </button>
-                </div>
-                <hr />
-            </div>
-            <div class="post"></div>
-            <div class="post"></div>
         </div>
         <div class="space2"></div>
         <!-- <div class="message-container">
@@ -186,6 +187,6 @@
         </div> -->
     </div>
 </div>
-<!--<script src="/index.js"></script>-->
+<script src="/index.js"></script>
 </body>
 </html>

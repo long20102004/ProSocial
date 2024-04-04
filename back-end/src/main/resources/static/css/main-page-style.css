@@ -145,3 +145,27 @@ hr{
     background: none;
     border: none;
 }
+.all-reaction{
+    width: 50%;
+    /* display: inline-flex; */
+    justify-content: space-between;
+    display: none;
+}
+.all-reaction > * {
+    width: 13%;
+}
+.all-reaction img{
+    width: 100%;
+}
+.emoji-button{
+    background: none;
+    border: none;
+}
+.reaction-count{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.like-count{
+    width: 70%;
+}

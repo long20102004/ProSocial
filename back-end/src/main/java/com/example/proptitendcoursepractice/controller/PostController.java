@@ -1,15 +1,15 @@
 package com.example.proptitendcoursepractice.controller;
 
 import com.example.proptitendcoursepractice.model.Post;
+import com.example.proptitendcoursepractice.model.Reaction;
 import com.example.proptitendcoursepractice.service.PostService;
 import com.example.proptitendcoursepractice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
@@ -64,5 +64,13 @@ public class PostController {
         post.setContent(content);
         postService.updatePost(post);
         return modelAndView;
+    }
+    @PostMapping("/posts/{postId}")
+    public ResponseEntity<String>reactToPost(@PathVariable("postId")int postId, @RequestBody Reaction reaction){
+        Post currentPost = postService.getPostById(postId);
+        currentPost.addReaction(reaction);
+        postService.updatePost(currentPost);
+        System.out.println("saving");
+        return new ResponseEntity<>("Reaction succeeded", HttpStatus.OK);
     }
 }

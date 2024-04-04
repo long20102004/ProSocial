@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -24,9 +27,13 @@ public class Post {
     private String timeStamp;
     @Column(name = "attached_resources")
     private String attachedResources;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    List<Reaction> reactionList = new ArrayList<>();
     public Post(String content, String timeStamp) {
         this.content = content;
         this.timeStamp = timeStamp;
+    }
+    public void addReaction(Reaction reaction){
+        reactionList.add(reaction);
     }
 }
