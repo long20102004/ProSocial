@@ -24,7 +24,7 @@ public class MessageDaoImpl implements MessageDao{
     @Override
     public void loadAllMessage() {
     }
-
+    @Transactional
     public List<Message> getMessagesByReceiverId(int id, int currentId) {
         TypedQuery<Message> messageTypedQuery = entityManager.createQuery("SELECT m from Message m where (m.receiver = :id and m.sender = :currentId) or (m.sender = :id and m.receiver = :currentId)  order by m.id", Message.class);
         messageTypedQuery.setParameter("id", id);

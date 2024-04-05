@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,13 @@ public class Post {
     private String timeStamp;
     @Column(name = "attached_resources")
     private String attachedResources;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    List<Reaction> reactionList = new ArrayList<>();
+    // default, fetch type is lazy, so it will not load the Many part to improve performance
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post", orphanRemoval = true)
+    List<Reaction> reactionList;
     public Post(String content, String timeStamp) {
         this.content = content;
         this.timeStamp = timeStamp;
+        reactionList = new ArrayList<>();
     }
     public void addReaction(Reaction reaction){
         reactionList.add(reaction);

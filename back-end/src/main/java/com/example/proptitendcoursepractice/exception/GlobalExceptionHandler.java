@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(Exception.class)
-    public String handleUserNotFoundException(Exception exception){
-        return "error";
-    }
+//    @ExceptionHandler(Exception.class)
+//    public String handleUserNotFoundException(Exception exception){
+//        return "error";
+//    }
 }

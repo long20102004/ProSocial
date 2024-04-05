@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let localSocket = new WebSocket("ws://localhost:5000/stomp")
     let socket = new WebSocket("ws://longhh-chatting.us-east-1.elasticbeanstalk.com/stomp")
-    let stompClient = Stomp.over(socket);
+    let stompClient = Stomp.over(localSocket);
     let messages = document.querySelector(".chat-messages");
     let sendButton = document.querySelector(".send-message-button");
     let messageContent = document.querySelector(".input-message");
@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let messageNotExisted = [];
     let receivedUserId = document.querySelector(".received-user-id").textContent;
     let currentUserId = document.querySelector(".current-user-id").textContent;
-    let isInitMessage = false;
     stompClient.connect({}, function (qualifiedName, value) {
 
 
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         stompClient.subscribe("/messages/" + currentUserId, function (message) {
             let receivedMessage = JSON.parse(message.body);
             if (Array.isArray(receivedMessage)) {
-                isInitMessage = true;
                 receivedMessage.forEach(receivedMessage => {
                     readMessage(receivedMessage);
                 })
@@ -78,10 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         parentDiv.appendChild(avatarDiv);
         parentDiv.appendChild(messageDiv);
 
-        if (isInitMessage && messageNotExisted[receivedMessage.id] === undefined) {
-            messageNotExisted[receivedMessage.id] = "defined";
-            messages.appendChild(parentDiv);
-        } else messages.appendChild(parentDiv);
+        messages.appendChild(parentDiv)
     }
 })
 document.querySelector(".input-message").addEventListener('keypress', function (e){

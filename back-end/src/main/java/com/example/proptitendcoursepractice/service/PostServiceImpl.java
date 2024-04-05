@@ -2,6 +2,7 @@ package com.example.proptitendcoursepractice.service;
 
 import com.example.proptitendcoursepractice.model.Post;
 import com.example.proptitendcoursepractice.repository.PostRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

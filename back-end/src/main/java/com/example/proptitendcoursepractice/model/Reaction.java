@@ -23,7 +23,7 @@ public class Reaction {
     private int count;
     @Column(name = "user_id")
     private int userId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "post_fk", referencedColumnName = "id")
     private Post post;
 }

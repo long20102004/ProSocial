@@ -5,8 +5,8 @@
         xmlns="http://www.w3.org/1999/html"
 >
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ProSocial</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -14,7 +14,7 @@
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
             crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/main-page-style.css" />
+    <link rel="stylesheet" href="/css/main-page-style.css"/>
 </head>
 <body>
 <div class="my-container">
@@ -34,7 +34,7 @@
                 </form>
                 <form th:action="@{/messages}">
                     <button type="submit" class="message-button">
-                        <img src= "/icon/chat.svg" alt="chat" class="message-icon" />
+                        <img src="/icon/chat.svg" alt="chat" class="message-icon"/>
                     </button>
                 </form>
                 <!--                <form-->
@@ -52,117 +52,128 @@
         <div class="group-container"></div>
         <div class="space1"></div>
         <div class="story-post">
-            <form class="upload-post post" th:action="@{/post}" method="POST">
-                <img src="/avatar/default-avatar.jpg" alt="avatar" class="avatar" />
+            <form class="upload-post post" th:action="@{/post}" method="POST"  enctype="multipart/form-data">
+                <img src="/avatar/default-avatar.jpg" alt="avatar" class="avatar"/>
                 <input
                         type="text"
                         th:placeholder="${currentUser.name} + ' ơi, bạn đang nghĩ gì thế?'"
                         class="input-post"
                         name="input-post"
                 />
+                <input type="file" name="image" accept="image/*,video/*" />
+
                 <button type="submit" class="btn btn-success send-button">
                     Post
                 </button>
             </form>
 
             <div th:each="post : ${postList}" class="post">
-                <div class="post-id" th:text="${post.id}" style="display: none" ></div>
+                <div class="post-id" th:text="${post.id}" style="display: none"></div>
                 <div class="current-user-id" th:text="${currentUser.id}" style="display: none"></div>
 
-                    <div class="post-title">
-                        <div>
-                            <img
-                                    th:src="${post.owner.avatar}"
-                                    alt="avatar"
-                                    class="avatar"
-                            />
-                        </div>
-                        <div class="user-name" th:text="${post.owner.name}"></div>
-                        <div
-                                th:if="${currentUser.id == post.owner.id}"
-                                class="modify-buttons"
+                <div class="post-title">
+                    <div>
+                        <img
+                                th:src="${post.owner.avatar}"
+                                alt="avatar"
+                                class="avatar"
+                        />
+                    </div>
+                    <div class="user-name" th:text="${post.owner.name}"></div>
+                    <div
+                            th:if="${currentUser.id == post.owner.id}"
+                            class="modify-buttons"
+                    >
+                        <form
+                                th:action="@{'update-post/' + ${post.id}}"
+                                method="post"
+                                style="width: 10%"
                         >
-                            <form
-                                    th:action="@{'update-post/' + ${post.id}}"
-                                    method="post"
-                                    style="width: 10%"
-                            >
-                                <button type="submit" class="btn btn-success modify-icon">
-                                    <img src="/icon/pencil-square.svg" />
-                                </button>
-                            </form>
-
-                            <form
-                                    th:action="@{'delete-post/' + ${post.id}}"
-                                    method="post"
-                            >
-                                <button
-                                        type="submit"
-                                        class="btn btn-outline-danger modify-icon"
-                                >
-                                    <img src="/icon/trash3.svg" />
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="content" th:text="${post.content}"></div>
-                    <!--                    <img src="/picture/demo.jpg" class="post-image" alt=""/>-->
-
-                    <div class="all-reaction">
-                        <button class="emoji-button smaller-like-button">
-                            <img src="/icon/hand-thumbs-up.svg" alt="" />
-                        </button>
-                        <button class="emoji-button love-button">
-                            <img src="/icon/heart.svg" alt="" />
-                        </button>
-                        <button class="emoji-button haha-button">
-                            <img src="/icon/emoji-laughing.svg" alt="" />
-                        </button>
-                        <button class="emoji-button sad-button">
-                            <img src="/icon/emoji-tear.svg" alt="" />
-                        </button>
-                        <button class="emoji-button wow-button">
-                            <img src="/icon/emoji-surprise.svg" alt="" />
-                        </button>
-                        <button class="emoji-button angry-button">
-                            <img src="/icon/emoji-angry.svg" alt="" />
-                        </button>
-                    </div>
-                    <!-- <hr /> -->
-                    <div class="reaction-count">
-                        <div class="like-count">
-                            <img src="/icon/hand-thumbs-up.svg" alt="" />
-                            <span th:text="${post.reactionList.size()}"></span>
-                        </div>
-                        <div class="comment-count">
-                            <img src="/icon/chat-dots.svg" alt="" />
-                            100
-                        </div>
-                        <div class="share-count">
-                            <img src="/icon/share.svg" alt="" />
-                            100
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="reaction-bar">
-                        <div class="reaction">
-                            <button class="post-button like-button">
-                                <img src="/icon/hand-thumbs-up.svg" class="reaction-icon"/> Thích
+                            <button type="submit" class="btn btn-success modify-icon">
+                                <img src="/icon/pencil-square.svg"/>
                             </button>
-                        </div>
+                        </form>
 
-                        <div class="comment">
-                            <button class="post-button comment-button">
-                                <img src="/icon/chat-dots.svg" alt="" /> Bình luận
+                        <form
+                                th:action="@{'delete-post/' + ${post.id}}"
+                                method="post"
+                        >
+                            <button
+                                    type="submit"
+                                    class="btn btn-outline-danger modify-icon"
+                            >
+                                <img src="/icon/trash3.svg"/>
                             </button>
-                        </div>
-                        <button class="post-button share-button">
-                            <div class="share">
-                                <img src="/icon/share.svg" alt="" /> Chia sẻ
-                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="content" th:text="${post.content}">
+                </div>
+<!--                <div th:if="${post.attachedResources != null}" >-->
+<!--                    <img th:src="${post.attachedResources}" alt="Post image" class="post-image"/>-->
+<!--                </div>-->
+
+                    <video th:if="${post.attachedResources != null}" class="post-video" controls>
+                        <source th:src="${post.attachedResources}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+
+                <div class="all-reaction">
+                    <button class="emoji-button smaller-like-button">
+                        <img src="/icon/hand-thumbs-up.svg" alt=""/>
+                    </button>
+                    <button class="emoji-button love-button">
+                        <img src="/icon/heart.svg" alt=""/>
+                    </button>
+                    <button class="emoji-button haha-button">
+                        <img src="/icon/emoji-laughing.svg" alt=""/>
+                    </button>
+                    <button class="emoji-button sad-button">
+                        <img src="/icon/emoji-tear.svg" alt=""/>
+                    </button>
+                    <button class="emoji-button wow-button">
+                        <img src="/icon/emoji-surprise.svg" alt=""/>
+                    </button>
+                    <button class="emoji-button angry-button">
+                        <img src="/icon/emoji-angry.svg" alt=""/>
+                    </button>
+                </div>
+                <!-- <hr /> -->
+                <div class="reaction-count">
+                    <div class="like-count">
+                        <img src="/icon/hand-thumbs-up.svg" alt=""/>
+                        <span th:text="${post.reactionList.size()}" class="number-reaction"></span>
+                    </div>
+                    <div class="comment-count">
+                        <img src="/icon/chat-dots.svg" alt=""/>
+                        100
+                    </div>
+                    <div class="share-count">
+                        <img src="/icon/share.svg" alt=""/>
+                        100
+                    </div>
+                </div>
+                <hr/>
+                <div class="reaction-bar">
+                    <div class="reaction">
+                        <button class="post-button like-button">
+                            <img src="/icon/hand-thumbs-up.svg" class="reaction-icon"/> Thích
                         </button>
                     </div>
-                    <hr />
+
+                    <div class="comment">
+                        <button class="post-button comment-button">
+                            <img src="/icon/chat-dots.svg" alt=""/> Bình luận
+                        </button>
+                    </div>
+                    <button class="post-button share-button">
+                        <div class="share">
+                            <img src="/icon/share.svg" alt=""/> Chia sẻ
+                        </div>
+                    </button>
+                </div>
+                <hr/>
             </div>
 
         </div>
@@ -187,6 +198,6 @@
         </div> -->
     </div>
 </div>
-<script src="/index.js"></script>
+<script src="/js/index.js"></script>
 </body>
 </html>

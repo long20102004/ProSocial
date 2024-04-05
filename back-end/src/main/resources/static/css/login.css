@@ -4,7 +4,7 @@ body{
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-image: url("/picture/login-back.jpg");
+    background-image: url("/media/login-back.jpg");
 }
 .my-container{
     width: 25%;

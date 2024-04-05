@@ -15,7 +15,9 @@
 <body>
 <main class="content">
     <div class="container p-0">
-        <h1 class="h3 mb-3">Messages</h1>
+        <div th:action="@{/}">
+            <h1 class="h3 mb-3">P-Social</h1>
+        </div>
 
         <div class="card">
             <div class="row g-0">
@@ -175,6 +177,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
         integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/chat-detail.js"></script>
+<script src="/js/chat-detail.js"></script>
 </body>
 </html>
