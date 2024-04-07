@@ -19,8 +19,6 @@ public class Reaction {
     private String type;
     @Column(name = "post_id")
     private int postId;
-    @Column(name = "count")
-    private int count;
     @Column(name = "user_id")
     private int userId;
     @ManyToOne(cascade = CascadeType.ALL)

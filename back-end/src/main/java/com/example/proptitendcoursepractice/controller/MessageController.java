@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
 
 public class MessageController {
     private final MessageService messageService;
