@@ -27,6 +27,10 @@ Link Video Demo: https://www.youtube.com/watch?v=6HcwofFm9bI&ab_channel=D22BCCN4
 - Java Spring Boot
 - Maven
 - Websocket
+  
+## UML
+![image](https://github.com/long20102004/ProSocial/assets/99398806/8703a620-e346-4351-8181-3cddb58a69b0)
+
 
 ## Usage
 
