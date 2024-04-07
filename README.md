@@ -1,9 +1,8 @@
 
-# [Tên dự án]
+# [ProSocial]
 
-[Mô tả dự án]
 
-Ví dụ: Khoảng tầm 1 tháng trước, có 1 ngày tâm trạng mình rất tệ và tối ấy mình dùng facebook để nhắn tin tâm sự với những người thân yêu cho khuây khỏa. Bỗng dưng đùng, facebook bị sập và mọi người đều không thể truy cập được.
+Khoảng tầm 1 tháng trước, có 1 ngày tâm trạng mình rất tệ và tối ấy mình dùng facebook để nhắn tin tâm sự với những người thân yêu cho khuây khỏa. Bỗng dưng đùng, facebook bị sập và mọi người đều không thể truy cập được.
 Vậy nên mình quyết định tự viết 1 trang mạng xã hội nho nhỏ để mình và những người thân có thể sử dụng trong những tình huống ấy. 
 
 
